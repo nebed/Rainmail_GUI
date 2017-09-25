@@ -271,6 +271,10 @@ def express_gui():
 	values_to_set_menu = Menu(values_to_set, tearoff=0)
 	values_to_set_menu.add_command = (label='Choose What to Search', command=choose_keyword)
 	values_to_set_menu.add_command = (label='Choose Country to Search', command=choose_country)
+	disp_var = StringVar()
+	disp_output = Entry(express, textvariable=disp_var)
+	disp_output.pack()
+	disp_var.set('Output')
 	
 	
 	google_search_url_default = 'https://www.google.' + chosen_country.lower() + '/search?hl=en'
@@ -319,22 +323,43 @@ def express_gui():
 
 		}
 	
+	emails_output = ', '.join(process_url(start_search(config)))
+	disp_var.set(emails_output)
 	
 
-	return config
+	return True
+
+def user_gui():
+	user_gui = Toplevel(rainmail)
+	user_gui.title('Normal Mode')
+	user_gui.geometry('500x400')
+	values_to_set = Menubutton(user_gui, text='Values to Set', relief=RAISED)
+	values_to_set.place(x=250,y=400)
+	values_to_set_menu = Menu(values_to_set, tearoff=0)
+	values_to_set_menu.add_command = (label='Choose What to Search', command=choose_keyword)
+	values_to_set_menu.add_command = (label='Choose Country to Search', command=choose_country)
+	disp_var = StringVar()
+	disp_output = Entry(user_gui, textvariable=disp_var)
+	disp_output.pack()
+	disp_var.set('Output')
+
+
+#def click_search1():
+#	click_output = process_urls(start_search(express_gui())
+#	disp_var.set(click_output)
 	
 def start_search(config):
 	urls_to_process = deque()
 	try:
 		search = scrape_with_config(config)
 	except GoogleSearchError as e:
-		print(e)
+		#print(e)
 
 	for serp in search.serps:
-		print(serp)
+		#print(serp)
 
 		for link in serp.links:
-			print(link)
+			#print(link)
 			retrieved_url = str(link)
 			end = len(retrieved_url) -1
 			urls_to_process.append(retrieved_url[25:end])
