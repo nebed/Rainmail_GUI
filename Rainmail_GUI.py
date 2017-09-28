@@ -219,15 +219,17 @@ countries = {
 
 }
 
-def choose_country():
+def Choose_country():
 	choose_country = Toplevel(rainmail)
 	choose_country.title('Choose Country')
 	choose_country.geometry('100x100')
 	choose_country.attributes('-topmost', 'true')
 	label_country = Label(choose_country, text='Enter Two letter Country Code and Press Enter')
 	label_country.place(x=80,y=100)
-	enter_country = Entry(choose_county, command=country_validate)
+	enter_country = Entry(choose_country, command=country_validate)
 	enter_country.place(x=80,y=60)
+	choose_country.mainloop()
+	
 
 def country_validate():
 	search_country = enter_country.get()
@@ -241,7 +243,7 @@ def country_validate():
 		messagebox.showinfo(title='Info', message='You have not Chosen a Searchable Country')
 
 
-def choose_keyword():
+def Choose_keyword():
 	choose_keyword = Toplevel(rainmail)
 	choose_keyword.title('Choose Keyword')
 	choose_keyword.geometry('100x100')
@@ -250,6 +252,7 @@ def choose_keyword():
 	label_keyword.place(x=80,y=100)
 	enter_keyword = Entry(choose_keyword, command=keyword_validate)
 	enter_keyword.place(x=80,y=60)
+	choose_keyword.mainloop()
 
 def keyword_validate():
 	search_keyword = enter_keyword.get()
@@ -259,7 +262,120 @@ def keyword_validate():
 		choose_keyword.destroy()
 	else:
 		messagebox.showinfo(title='Info', message='You Have Not Input Anything')
+		
+def sel():
+	selection = "You selected the option " + str(var.get())
+	sel_browser_user = var
+	
+def sel1():
+	selection1 = "You selected the option " + str(var1.get())
+	continue_last_scrape_user = var1
+	
+def sel2():
+	selection2 = "You selected the option " + str(var1.get())
+	manual_captcha_solving_user = var2
+		
+def Choose_browser():
+	
+	choose_browser = Toplevel(rainmail)
+	choose_browser.title('Choose Browser')
+	browser.config(text = selection)
+	var = StringVar()
+	R1 = Radiobutton(choose_browser, text="Google Chrome", variable=var, value='Chrome', command=sel)
+	R1.pack( anchor = W )
+	R2 = Radiobutton(choose_browser, text="Mozilla Firefox", variable=var, value='Firefox', command=sel)
+	R2.pack( anchor = W )
+	R3 = Radiobutton(choose_browser, text="PhantomJs", variable=var, value='Phantomjs', command=sel)
+	R3.pack( anchor = W)
+	browser = Label(choose_browser)
+	browser.pack()
+	choose_browser.mainloop()
+	
+	
+def Choose_engines():
+	
+	choose_engines = Toplevel(rainmail)
+	choose_engines.title('Choose Search Engines')
+	CheckVar1 = StringVar()
+	CheckVar2 = StringVar()
+	CheckVar3 = StringVar()
+	CheckVar4 = StringVar()
+	CheckVar5 = StringVar()
+	CheckVar6 = StringVar()
+	CheckVar7 = StringVar()
+	search_engines_user = [CheckVar1, CheckVar2, CheckVar3, CheckVar4, CheckVar5,\
+	CheckVar6, CheckVar7]
+	C1 = Checkbutton(choose_engines, text = "Google", variable = CheckVar1, \
+	onvalue = "Google", offvalue = '', height=5, \
+	width = 20, )
+	C2 = Checkbutton(choose_engines, text = "Yandex", variable = CheckVar2, \
+	onvalue = "Yandex", offvalue = '', height=5, \
+	width = 20)
+	C3 = Checkbutton(choose_engines, text = "Bing", variable = CheckVar1, \
+	onvalue = "Bing", offvalue = '', height=5, \
+	width = 20, )
+	C4 = Checkbutton(choose_engines, text = "Yahoo", variable = CheckVar2, \
+	onvalue = "Yahoo", offvalue = '', height=5, \
+	width = 20)
+	C5 = Checkbutton(choose_engines, text = "Baidu", variable = CheckVar2, \
+	onvalue = "Baidu", offvalue = '', height=5, \
+	width = 20)
+	C6 = Checkbutton(choose_engines, text = "DuckDuckGo", variable = CheckVar1, \
+	onvalue = "DuckDuckGo", offvalue = '', height=5, \
+	width = 20, )
+	C7 = Checkbutton(choose_engines, text = "Ask", variable = CheckVar2, \
+	onvalue = "Ask", offvalue = '', height=5, \
+	C1.pack()
+	C2.pack()
+	C3.pack()
+	C4.pack()
+	C5.pack()
+	C6.pack()
+	C7.pack()
+	choose_engines.mainloop()
+			 
+def Last_scrape():
+	
+	last_scrape = Toplevel(rainmail)
+	last_scrape.title('Continue Last Scrape?')
+	scrape.config(text = selection)
+	var1 = BooleanVar()
+	R3 = Radiobutton(last_scrape, text="Yes", variable=var1, value=True, command=sel1)
+	R3.pack( anchor = W )
+	R4 = Radiobutton(last_scrape, text="No", variable=var1, value=False, command=sel1)
+	R4.pack( anchor = W )
+	scrape = Label(last_scrape)
+	scrape.pack()
+	last_scrape.mainloop()
 
+def Manual_captcha():
+	
+	manual_captcha = Toplevel(rainmail)
+	manual_captcha.title('Solve Captcha Manually')
+	captcha.config(text = selection)
+	var2 = BooleanVar()
+	R5 = Radiobutton(manual_captcha, text="Yes", variable=var1, value=True, command=sel2)
+	R5.pack( anchor = W )
+	R6 = Radiobutton(manual_captcha, text="No", variable=var1, value=False, command=sel2)
+	R6.pack( anchor = W )
+	scrape = Label(manual_caotcha)
+	scrape.pack()
+	manual_captcha.mainloop()
+			 
+def Use_ip():
+	
+	use_ip = Toplevel(rainmail)
+	use_ip.title('Use Own IP?')
+	ip.config(text = selection)
+	var3 = BooleanVar()
+	R7 = Radiobutton(use_ip, text="Yes", variable=var3, value=True, command=sel3)
+	R7.pack( anchor = W )
+	R8 = Radiobutton(use_ip, text="No", variable=var3, value=False, command=sel3)
+	R8.pack( anchor = W )
+	ip = Label(use_ip)
+	ip.pack()
+	use_ip.mainloop()
+	
 	
 	
 def express_gui():
@@ -336,8 +452,10 @@ def user_gui():
 	values_to_set = Menubutton(user_gui, text='Values to Set', relief=RAISED)
 	values_to_set.place(x=250,y=400)
 	values_to_set_menu = Menu(values_to_set, tearoff=0)
-	values_to_set_menu.add_command = (label='Choose What to Search', command=choose_keyword)
-	values_to_set_menu.add_command = (label='Choose Country to Search', command=choose_country)
+	values_to_set_menu.add_command = (label='Choose What to Search', command=Choose_keyword)
+	values_to_set_menu.add_command = (label='Choose Country to Search', command=Choose_country)
+	values_to_set_menu.add_command = (label='Choose Browser', command=Choose_browser)
+	values_to_set_menu.add_command = (label='Choose Search Engines', command=Choose_engines)
 	disp_var = StringVar()
 	disp_output = Entry(user_gui, textvariable=disp_var)
 	disp_output.pack()
@@ -423,6 +541,7 @@ def prompt_gui():
 	options.add_seperator()
 	options.add_command(label='Normal Mode', command=user_gui)
 	menubar.add_cascade(label='Select Mode', menu=options)
+	rainmail.mainloop()
     
     
     
